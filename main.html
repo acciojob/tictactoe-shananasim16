@@ -1,112 +1,16 @@
 <!DOCTYPE html>
+
 <html>
+
 <head>
-    <title>Tic Tac Toe</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-
-        .container {
-            text-align: center;
-        }
-
-        .message {
-            margin: 20px;
-        }
-
-        #board {
-            display: grid;
-            grid-template-columns: repeat(3, 100px);
-            gap: 5px;
-            margin: 20px;
-        }
-
-        .cell {
-            width: 100px;
-            height: 100px;
-            font-size: 36px;
-            text-align: center;
-            line-height: 100px;
-            border: 1px solid #ccc;
-        }
-    </style>
+	<link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-<div class="container">
-    <h1>Tic Tac Toe</h1>
-    <div id="players">
-        <input type="text" id="player-1" placeholder="Player 1 Name">
-        <input type="text" id="player-2" placeholder="Player 2 Name">
-        <button id="submit">Submit</button>
-    </div>
-    <div class="message">Enter player names and click Submit.</div>
-    <div id="board">
-        <!-- Tic Tac Toe cells will be generated here. -->
-    </div>
-</div>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const player1Input = document.getElementById("player-1");
-        const player2Input = document.getElementById("player-2");
-        const submitButton = document.getElementById("submit");
-        const message = document.querySelector(".message");
-        const board = document.getElementById("board");
-        let currentPlayer = 1;
-
-        submitButton.addEventListener("click", function () {
-            if (player1Input.value === "" || player2Input.value === "") {
-                alert("Please enter names for both players.");
-                return;
-            }
-            document.querySelector("#players").style.display = "none";
-            message.textContent = `${player1Input.value}, you're up!`;
-            createBoard();
-        });
-
-        function createBoard() {
-            for (let i = 1; i <= 9; i++) {
-                const cell = document.createElement("div");
-                cell.classList.add("cell");
-                cell.id = i;
-                cell.addEventListener("click", handleCellClick);
-                board.appendChild(cell);
-            }
-        }
-
-        function handleCellClick(event) {
-            const cell = event.target;
-
-            if (!cell.textContent) {
-                if (currentPlayer === 1) {
-                    cell.textContent = "X";
-                    currentPlayer = 2;
-                    message.textContent = `${player2Input.value}, you're up!`;
-                } else {
-                    cell.textContent = "O";
-                    currentPlayer = 1;
-                    message.textContent = `${player1Input.value}, you're up!`;
-                }
-                checkForWinner();
-            }
-        }
-
-        function checkForWinner() {
-            const cells = document.querySelectorAll(".cell");
-            const winningCombos = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]];
-
-            for (const combo of winningCombos) {
-                const [a, b, c] = combo;
-                if (cells[a - 1].textContent && cells[a - 1].textContent === cells[b - 1].textContent && cells[a - 1].textContent === cells[c - 1].textContent) {
-                    message.textContent = `${cells[a - 1].textContent === 'X' ? player1Input.value : player2Input.value}, congratulations, you won!`;
-                    return;
-                }
-            }
-        }
-    });
+	<!-- the entire body must be written by student -->
+    <script type="text/javascript" src="./script.js">
 </script>
-</body>
-</html>
 
+</body>
 	
+</html>
